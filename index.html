@@ -1,146 +1,244 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mustafa & Esraa Invitation</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Mustafa & Esraa</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <div class="mobile-frame">
+    <!-- 1. ENVELOPE & WAX SEAL OVERLAY -->
+    <div id="seal-overlay" class="seal-overlay">
+        <!-- Light glow / shimmer effects -->
+        <div class="glow-bg"></div>
+        <div class="light-ray"></div>
 
-    <!-- Audio Player -->
-    <audio id="bgMusic" loop preload="auto">
-      <source src="assets/music.mp3" type="audio/mpeg">
-    </audio>
+        <!-- Envelope flap visual background structure -->
+        <div class="envelope-container">
+            <div class="envelope-bg"></div>
+            <div class="envelope-pattern"></div>
+            
+            <!-- Wax Seal -->
+            <div class="seal-wrapper" id="sealButton">
+                <div class="seal-glow"></div>
+                <div class="wax-seal">
+                    <div class="seal-inner-ring">
+                        <span class="seal-monogram">ME</span>
+                    </div>
+                </div>
+                <div class="tap-hint">TAP TO OPEN</div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Glowing Light Burst Reveal Overlay -->
-    <div id="lightOverlay" class="light-overlay"></div>
-
-    <!-- SCENE 1: ENVELOPE & MEDALLION -->
-    <section id="envelopeScene" class="envelope-scene">
-      <div class="envelope-card">
-        <div class="envelope-top-flap"></div>
+    <!-- 2. MAIN INVITATION CONTENT -->
+    <div class="invitation-container" id="mainContent">
         
-        <!-- Bronze Center Medallion / Seal -->
-        <div id="medallionSeal" class="medallion-seal">
-          <div class="medallion-inner">
-            <svg viewBox="0 0 100 100" class="medallion-svg">
-              <path id="textPath" fill="none" d="M 15,50 A 35,35 0 1,1 85,50 A 35,35 0 1,1 15,50" />
-              <circle cx="50" cy="50" r="42" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="3 2" />
-              <text class="medallion-text">
-                <textPath href="#textPath" startOffset="50%" text-anchor="middle">مصطفى & إسراء</textPath>
-              </text>
-            </svg>
-            <div class="medallion-center-icon">💍</div>
-          </div>
+        <!-- CARD / ARCH HEADER -->
+        <div class="card-arch-frame">
+            <div class="floral-header">
+                <!-- Decorative Arch SVG / Floral Graphic Header -->
+                <svg viewBox="0 0 500 200" class="arch-svg">
+                    <path d="M 50 200 A 200 200 0 0 1 450 200" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.6"/>
+                    <path d="M 60 200 A 190 190 0 0 1 440 200" fill="none" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.4"/>
+                </svg>
+            </div>
+
+            <!-- Header Monogram & Title -->
+            <div class="header-section reveal">
+                <div class="wedding-day-title">Wedding Day</div>
+                <div class="wedding-date-top">17.08.26</div>
+                <div class="stamp-monogram">
+                    <div class="stamp-circle">
+                        <span>ME</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Couple Names -->
+            <div class="names-section reveal">
+                <h1 class="groom-name">Mustafa</h1>
+                <div class="ampersand">&</div>
+                <h1 class="bride-name">Esraa</h1>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator reveal">
+                <span>Scroll down</span>
+                <div class="scroll-arrow">↓</div>
+            </div>
         </div>
 
-        <p class="invite-text">YOU ARE INVITED FOR OUR SPECIAL DAY</p>
-      </div>
-    </section>
+        <!-- SECTION 1: BISMILLAH & QUOTE -->
+        <section class="section-quran reveal">
+            <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <div class="quote-english">
+                <p class="quote-line">Two Souls</p>
+                <p class="quote-line">One destiny</p>
+                <p class="quote-sub">A lifetime written by Allah</p>
+            </div>
+        </section>
 
-    <!-- SCENE 2: MAIN INVITATION CONTENT -->
-    <main id="mainInvitation" class="main-invitation">
+        <!-- SECTION 2: INVITATION MESSAGE & COUNTDOWN -->
+        <section class="section-countdown reveal">
+            <p class="invitation-text">
+                Dear Friends and Family,<br>
+                join us for an evening of love,<br>
+                laughter, dua, and unforgettable<br>
+                memories as we begin our forever.
+            </p>
 
-      <!-- HERO: FLORAL ARCH & LANTERNS -->
-      <section class="hero-section">
-        <div class="lanterns-header">
-          <div class="lantern">🏮</div>
-          <div class="lantern">🏮</div>
-          <div class="lantern">🏮</div>
+            <div class="countdown-header">The Celebration Begins In</div>
+            
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <span class="timer-num" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="minutes">00</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="seconds">00</span>
+                    <span class="timer-label">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SCHEDULE OF EVENTS -->
+        <section class="section-schedule reveal">
+            <h2 class="section-title">Schedule of Events</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="time">5 PM</div>
+                    <div class="timeline-dot"><span class="flower-icon">🌸</span></div>
+                    <div class="event-desc">Guest Arrival</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">6 PM</div>
+                    <div class="timeline-dot"><span class="flower-icon">🌸</span></div>
+                    <div class="event-desc">Nikkah Ceremony</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">7 PM</div>
+                    <div class="timeline-dot"><span class="flower-icon">🌸</span></div>
+                    <div class="event-desc">Mocktail Hour</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">8 PM</div>
+                    <div class="timeline-dot"><span class="flower-icon">🌸</span></div>
+                    <div class="event-desc">Dinner</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">9 PM</div>
+                    <div class="timeline-dot"><span class="flower-icon">🌸</span></div>
+                    <div class="event-desc">Dance</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: LOCATION & MAP -->
+        <section class="section-location reveal">
+            <h2 class="section-title">Location</h2>
+            <div class="location-card">
+                <div class="location-name">Wedding Venue</div>
+                <div class="location-address">Click below to navigate directly on Google Maps</div>
+                
+                <!-- Embedded Google Maps Button -->
+                <a href="https://maps.app.goo.gl/Tgtuzm1XXxXVLfUJ7?g_st=iw" target="_blank" rel="noopener noreferrer" class="map-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Open Location in Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 5: DRESS CODE & GIFT PREFERENCE -->
+        <section class="section-details reveal">
+            <div class="detail-block">
+                <h3 class="detail-title">Dress Code</h3>
+                <p class="detail-text">We kindly ask guests to wear formal or evening attire for the celebration.</p>
+            </div>
+            
+            <div class="detail-block">
+                <h3 class="detail-title">Gift Preference</h3>
+                <p class="detail-text">Kindly, no boxed gifts please.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 6: RSVP FORM -->
+        <section class="section-rsvp reveal">
+            <h2 class="section-title">Confirm Your Attendance</h2>
+            <p class="rsvp-sub">Please RSVP before August 1st, 2026</p>
+
+            <button type="button" class="rsvp-open-btn" id="openRsvpModal">
+                <span class="envelope-mini-icon">✉</span>
+                <span>RSVP HERE</span>
+                <span class="click-hint-sub">Click to open</span>
+            </button>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer-section reveal">
+            <div class="footer-quote">Hope to see you there</div>
+            <div class="footer-names">Mustafa and Esraa</div>
+        </footer>
+
+    </div>
+
+    <!-- RSVP MODAL POPUP -->
+    <div id="rsvpModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="closeRsvpModal">&times;</button>
+            <h2 class="modal-title">Confirm Your Attendance</h2>
+            <p class="modal-subtitle">Please RSVP before August 1st, 2026</p>
+
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-group">
+                    <label for="guestName">Your Name</label>
+                    <input type="text" id="guestName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Will you be attending?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="attending" checked> Accepts with pleasure</label>
+                        <label><input type="radio" name="attendance" value="declining"> Declines with regret</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestCount">Number of Guests Attending</label>
+                    <input type="number" id="guestCount" min="1" max="10" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="songRequest">A Song That Gets You Dancing</label>
+                    <input type="text" id="songRequest" placeholder="Song title or artist">
+                </div>
+
+                <div class="form-group">
+                    <label for="childrenInfo">Children Attending</label>
+                    <input type="text" id="childrenInfo" placeholder="Please include names and ages">
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
         </div>
-
-        <div class="floral-arch"></div>
-
-        <div class="hero-text-container">
-          <h1 class="groom-name hero-anim">MUSTAFA</h1>
-          <span class="and-symbol hero-anim">&</span>
-          <h1 class="bride-name hero-anim">ESRAA</h1>
-          <p class="arabic-title hero-anim">حفل زفافنا</p>
-        </div>
-      </section>
-
-      <!-- COUNTDOWN SECTION -->
-      <section class="countdown-section">
-        <div class="section-date">AUGUST 17, 2026</div>
-        <h2 class="section-title-ar">العد التنازلي</h2>
-        <p class="section-subtitle-en">WE CAN'T WAIT UNTIL THIS MOMENT!</p>
-
-        <div id="countdown" class="countdown-grid">
-          <div class="count-card">
-            <span id="days">00</span>
-            <small>أيام</small>
-          </div>
-          <div class="count-card">
-            <span id="hours">00</span>
-            <small>ساعات</small>
-          </div>
-          <div class="count-card">
-            <span id="minutes">00</span>
-            <small>دقائق</small>
-          </div>
-          <div class="count-card">
-            <span id="seconds">00</span>
-            <small>ثواني</small>
-          </div>
-        </div>
-      </section>
-
-      <!-- VENUES SECTION -->
-      <section class="venue-section">
-        <h2 class="section-title-ar">مكان الحفل</h2>
-
-        <div class="palace-lineart">
-          <svg viewBox="0 0 200 100" class="lineart-svg">
-            <path fill="none" stroke="#8b7355" stroke-width="1.2" d="M20 90 L20 40 L50 20 L80 40 L80 90 M80 90 L80 30 L100 10 L120 30 L120 90 M120 90 L120 40 L150 20 L180 40 L180 90 M10 90 L190 90 M90 90 L90 70 A10 10 0 0 1 110 70 L110 90" />
-          </svg>
-        </div>
-
-        <div class="venue-card">
-          <h3>مأدبة الغداء والحنة</h3>
-          <p class="venue-date">السبت - 15 أغسطس 2026</p>
-          <p class="venue-desc">أمام المنزل في قرية الدمايرة - بلقاس</p>
-        </div>
-
-        <div class="venue-card highlight">
-          <h3>حفل الزفاف</h3>
-          <p class="venue-date">الاثنين - 17 أغسطس 2026</p>
-          <p class="venue-desc">قاعة Bella Vita - مدينة دمياط الجديدة</p>
-          <a href="https://maps.app.goo.gl/Tgtuzm1XXxXVLfUJ7?g_st=iw" target="_blank" class="map-link-btn">
-            📍 موقع القاعة على الخريطة
-          </a>
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="footer-section">
-        <p>نتشرف بحضوركم لمشاركتنا فرحتنا</p>
-        <h4>مصطفى & إسراء</h4>
-      </footer>
-
-    </main>
-
-    <!-- Music Control Button -->
-    <button id="musicToggle" class="music-btn">♫</button>
-
-  </div>
-
-  <!-- Scripts: GSAP & Lenis -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
-  <script src="app.js"></script>
+    </div>
 
 </body>
-
+<script src="app.js"></script>
 </html>

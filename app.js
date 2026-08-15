@@ -1,123 +1,101 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // DOM Elements
-  const medallionSeal = document.getElementById("medallionSeal");
-  const lightOverlay = document.getElementById("lightOverlay");
-  const envelopeScene = document.getElementById("envelopeScene");
-  const mainInvitation = document.getElementById("mainInvitation");
-  const music = document.getElementById("bgMusic");
-  const musicBtn = document.getElementById("musicToggle");
+/* ==========================================================================
+   WEDDING INVITATION - JAVASCRIPT LOGIC
+   Handles Wax Seal Opening, Scroll Reveals, Countdown Timer & RSVP Modal
+   ========================================================================== */
 
-  // GSAP Setup
-  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const sealButton = document.getElementById('sealButton');
+    const sealOverlay = document.getElementById('seal-overlay');
+    const mainContent = document.getElementById('mainContent');
 
-  // Smooth Scroll (Lenis)
-  if (typeof Lenis !== "undefined") {
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }
+    // ==================== 1. WAX SEAL OPENING ANIMATION ====================
+    sealButton.addEventListener('click', () => {
+        // Trigger opening animation on seal
+        sealOverlay.classList.add('seal-open');
 
-  // Music Play/Pause Toggle
-  let musicPlaying = false;
-
-  function playAudio() {
-    if (music) {
-      music.play().then(() => {
-        musicPlaying = true;
-        if (musicBtn) musicBtn.innerHTML = "❚❚";
-      }).catch(err => console.log("Audio play deferred:", err));
-    }
-  }
-
-  if (musicBtn) {
-    musicBtn.addEventListener("click", () => {
-      if (!musicPlaying) {
-        playAudio();
-      } else {
-        music.pause();
-        musicPlaying = false;
-        musicBtn.innerHTML = "♫";
-      }
+        // Fade out overlay and reveal main content smoothly
+        setTimeout(() => {
+            sealOverlay.classList.add('fade-out');
+            mainContent.classList.add('visible');
+            
+            // Initialize Scroll Reveal Animations after content is revealed
+            initScrollReveal();
+        }, 800);
     });
-  }
 
-  // Medallion Click Event Trigger
-  if (medallionSeal) {
-    medallionSeal.addEventListener("click", () => {
-      // Start Playing Audio
-      playAudio();
+    // ==================== 2. COUNTDOWN TIMER (17 AUGUST 2026) ====================
+    const weddingDate = new Date('August 17, 2026 18:00:00').getTime();
 
-      // Fallback if GSAP is missing
-      if (typeof gsap === "undefined") {
-        if (envelopeScene) envelopeScene.style.display = "none";
-        if (mainInvitation) {
-          mainInvitation.style.display = "block";
-          mainInvitation.style.opacity = "1";
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const difference = weddingDate - now;
+
+        if (difference > 0) {
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        } else {
+            document.getElementById('days').innerText = '00';
+            document.getElementById('hours').innerText = '00';
+            document.getElementById('minutes').innerText = '00';
+            document.getElementById('seconds').innerText = '00';
         }
-        return;
-      }
+    }
 
-      // GSAP Reveal Sequence
-      const tl = gsap.timeline();
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-      tl.to(medallionSeal, {
-        scale: 1.15,
-        filter: "brightness(1.8) drop-shadow(0 0 20px #ffd700)",
-        duration: 0.4,
-        ease: "power2.out"
-      })
-      .to(lightOverlay, {
-        opacity: 1,
-        scale: 25,
-        duration: 1.1,
-        ease: "power3.in"
-      }, "-=0.1")
-      .set(envelopeScene, { display: "none" })
-      .set(mainInvitation, { display: "block", opacity: 1 })
-      .to(lightOverlay, {
-        opacity: 0,
-        duration: 1.0,
-        ease: "power2.out"
-      })
-      .from(".hero-anim", {
-        y: 25,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.9,
-        ease: "power3.out"
-      }, "-=0.6");
+    // ==================== 3. SCROLL REVEAL (IntersectionObserver) ====================
+    function initScrollReveal() {
+        const observerOptions = {
+            root: null,
+            threshold: 0.12
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    obs.unobserve(entry.target); // Reveal once
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+    }
+
+    // ==================== 4. RSVP MODAL HANDLERS ====================
+    const openRsvpBtn = document.getElementById('openRsvpModal');
+    const closeRsvpBtn = document.getElementById('closeRsvpModal');
+    const rsvpModal = document.getElementById('rsvpModal');
+    const rsvpForm = document.getElementById('rsvpForm');
+
+    openRsvpBtn.addEventListener('click', () => {
+        rsvpModal.classList.add('active');
     });
-  }
 
-  // Countdown Logic (15 August 2026)
-  const targetDate = new Date("2026-08-15T20:00:00");
-  function updateTimer() {
-    const now = new Date();
-    const diff = targetDate - now;
+    closeRsvpBtn.addEventListener('click', () => {
+        rsvpModal.classList.remove('active');
+    });
 
-    if (diff <= 0) return;
+    rsvpModal.addEventListener('click', (e) => {
+        if (e.target === rsvpModal) {
+            rsvpModal.classList.remove('active');
+        }
+    });
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    const dEl = document.getElementById("days");
-    const hEl = document.getElementById("hours");
-    const mEl = document.getElementById("minutes");
-    const sEl = document.getElementById("seconds");
-
-    if (dEl) dEl.innerText = String(days).padStart(2, '0');
-    if (hEl) hEl.innerText = String(hours).padStart(2, '0');
-    if (mEl) mEl.innerText = String(minutes).padStart(2, '0');
-    if (sEl) sEl.innerText = String(seconds).padStart(2, '0');
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for confirming your attendance!');
+        rsvpModal.classList.remove('active');
+        rsvpForm.reset();
+    });
 });
