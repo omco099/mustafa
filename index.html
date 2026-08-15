@@ -4,151 +4,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دعوة زفاف مصطفى ♥ إسراء</title>
-  <meta name="theme-color" content="#0b1326">
+  <title>Mustafa & Esraa Invitation</title>
 
-  <!-- الخطوط -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- App Main Container -->
-  <div class="app-container">
+  <div class="mobile-frame">
 
     <!-- Audio Player -->
     <audio id="bgMusic" loop preload="auto">
       <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Overlay Light Bloom Effect (GSAP Light Reveal) -->
-    <div id="lightReveal" class="light-reveal"></div>
+    <!-- Glowing Light Burst Reveal Overlay -->
+    <div id="lightOverlay" class="light-overlay"></div>
 
-    <!-- ================================= -->
-    <!-- OPENING SCENE (ENVELOPE) -->
-    <!-- ================================= -->
-    <section id="openingScene" class="opening-scene">
-      <div class="envelope-container" id="envelopeContainer">
-        <!-- Envelope Frame -->
-        <div class="envelope-card">
-          <div class="pattern-bg"></div>
-          
-          <!-- Wax Seal / Medallion -->
-          <div id="waxSeal" class="wax-seal">
-            <div class="seal-inner">
-              <svg viewBox="0 0 100 100" class="seal-svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2"/>
-                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" class="seal-arabic">مصطفى & إسراء</text>
-              </svg>
-            </div>
+    <!-- ========================================= -->
+    <!-- SCENE 1: ENVELOPE & MEDALLION             -->
+    <!-- ========================================= -->
+    <section id="envelopeScene" class="envelope-scene">
+      <div class="envelope-card">
+        <div class="envelope-top-flap"></div>
+        <div class="envelope-pattern"></div>
+        
+        <!-- Bronze Center Medallion / Seal -->
+        <div id="medallionSeal" class="medallion-seal">
+          <div class="medallion-inner">
+            <svg viewBox="0 0 100 100" class="medallion-svg">
+              <path id="textPath" fill="none" d="M 15,50 A 35,35 0 1,1 85,50 A 35,35 0 1,1 15,50" />
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="3 2" />
+              <text class="medallion-text">
+                <textPath href="#textPath" startOffset="50%" text-anchor="middle">مصطفى & إسراء</textPath>
+              </text>
+            </svg>
+            <div class="medallion-center-icon">💍</div>
           </div>
-
-          <p class="envelope-subtitle">YOU ARE INVITED FOR OUR SPECIAL DAY</p>
         </div>
+
+        <p class="invite-text">YOU ARE INVITED FOR OUR SPECIAL DAY</p>
       </div>
     </section>
 
-    <!-- ================================= -->
-    <!-- MAIN CONTENT (AFTER LIGHT REVEAL) -->
-    <!-- ================================= -->
-    <main id="mainContent" class="main-content">
+    <!-- ========================================= -->
+    <!-- SCENE 2: MAIN INVITATION CONTENT          -->
+    <!-- ========================================= -->
+    <main id="mainInvitation" class="main-invitation">
 
-      <!-- HERO SECTION WITH FLORAL ARCH & LANTERNS -->
-      <section id="heroSection" class="hero-section">
-        <div class="lanterns-container">
-          <div class="lantern lantern-left">🏮</div>
-          <div class="lantern lantern-center">🏮</div>
-          <div class="lantern lantern-right">🏮</div>
+      <!-- HERO: FLORAL ARCH & LANTERNS -->
+      <section class="hero-section">
+        <!-- Hanging Lanterns -->
+        <div class="lanterns-header">
+          <div class="lantern">🏮</div>
+          <div class="lantern">🏮</div>
+          <div class="lantern">🏮</div>
         </div>
 
-        <div class="floral-arch-bg"></div>
+        <!-- Floral Arch Frame Overlay -->
+        <div class="floral-arch"></div>
 
-        <div class="hero-names-box">
-          <h1 class="groom-name reveal-item">MUSTAFA</h1>
-          <span class="and-symbol reveal-item">&</span>
-          <h1 class="bride-name reveal-item">ESRAA</h1>
-          <p class="arabic-sub reveal-item">حفل زفافنا</p>
-          <p class="hero-date reveal-item">15 أغسطس 2026</p>
+        <div class="hero-text-container">
+          <h1 class="groom-name hero-anim">MUSTAFA</h1>
+          <span class="and-symbol hero-anim">&</span>
+          <h1 class="bride-name hero-anim">ESRAA</h1>
+          <p class="arabic-title hero-anim">حفل زفافنا</p>
         </div>
       </section>
 
       <!-- COUNTDOWN SECTION -->
       <section class="countdown-section">
-        <div class="section-header">
-          <span class="sub-title">15 AUGUST 2026</span>
-          <h2>العد التنازلي</h2>
-          <p class="tagline">WE CAN'T WAIT UNTIL THIS MOMENT!</p>
-        </div>
+        <div class="section-date">AUGUST 15, 2026</div>
+        <h2 class="section-title-ar">العد التنازلي</h2>
+        <p class="section-subtitle-en">WE CAN'T WAIT UNTIL THIS MOMENT!</p>
 
         <div id="countdown" class="countdown-grid">
-          <div class="count-box">
+          <div class="count-card">
             <span id="days">00</span>
             <small>أيام</small>
           </div>
-          <div class="count-box">
+          <div class="count-card">
             <span id="hours">00</span>
             <small>ساعات</small>
           </div>
-          <div class="count-box">
+          <div class="count-card">
             <span id="minutes">00</span>
             <small>دقائق</small>
           </div>
-          <div class="count-box">
+          <div class="count-card">
             <span id="seconds">00</span>
             <small>ثواني</small>
           </div>
         </div>
       </section>
 
-      <!-- HENNA / LUNCH BANQUET SECTION -->
-      <section class="event-section henna-bg">
-        <div class="event-card">
-          <div class="event-icon">🍲</div>
-          <h2>مأدبة الغداء والحنة</h2>
-          <div class="event-date">الأربعاء، 14 أغسطس 2026</div>
-          <p class="event-location">أمام المنزل في قرية الدمايرة - بلقاس</p>
-        </div>
-      </section>
+      <!-- VENUES SECTION -->
+      <section class="venue-section">
+        <h2 class="section-title-ar">مكان الحفل</h2>
 
-      <!-- WEDDING VENUE SECTION -->
-      <section class="event-section venue-bg">
-        <div class="event-card">
-          <div class="event-icon">🏰</div>
-          <h2>حفل الزفاف</h2>
-          <div class="event-date">الخميس، 15 أغسطس 2026</div>
-          <p class="event-location">قاعة Bella Vita - مدينة دمياط الجديدة</p>
-          
-          <a href="https://maps.app.goo.gl/Tgtuzm1XXxXVLfUJ7?g_st=iw" target="_blank" class="map-btn">
-            📍 فتح الموقع على الخريطة
+        <!-- Venue Illustration Line Art -->
+        <div class="palace-lineart">
+          <svg viewBox="0 0 200 100" class="lineart-svg">
+            <path fill="none" stroke="#8b7355" stroke-width="1.2" d="M20 90 L20 40 L50 20 L80 40 L80 90 M80 90 L80 30 L100 10 L120 30 L120 90 M120 90 L120 40 L150 20 L180 40 L180 90 M10 90 L190 90 M90 90 L90 70 A10 10 0 0 1 110 70 L110 90" />
+          </svg>
+        </div>
+
+        <!-- Event 1: Henna / Lunch -->
+        <div class="venue-card">
+          <h3>مأدبة الغداء والحنة</h3>
+          <p class="venue-date">الأربعاء - 14 أغسطس 2026</p>
+          <p class="venue-desc">أمام المنزل في قرية الدمايرة - بلقاس</p>
+        </div>
+
+        <!-- Event 2: Wedding -->
+        <div class="venue-card highlight">
+          <h3>حفل الزفاف</h3>
+          <p class="venue-date">الخميس - 15 أغسطس 2026</p>
+          <p class="venue-desc">قاعة Bella Vita - مدينة دمياط الجديدة</p>
+          <a href="https://maps.app.goo.gl/Tgtuzm1XXxXVLfUJ7?g_st=iw" target="_blank" class="map-link-btn">
+            📍 موقع القاعة على الخريطة
           </a>
         </div>
       </section>
 
-      <!-- CALENDAR SECTION -->
-      <section class="calendar-section">
-        <button id="calendarBtn" class="calendar-btn">
-          📅 إضافة المناسبة إلى التقويم
-        </button>
-      </section>
-
-      <!-- FOOTER / FINAL -->
-      <section class="final-section">
-        <h2>نتشرف بحضوركم لمشاركتنا فرحتنا</h2>
-        <p class="final-names">مصطفى ♥ إسراء</p>
-      </section>
+      <!-- FOOTER -->
+      <footer class="footer-section">
+        <p>نتشرف بحضوركم لمشاركتنا فرحتنا</p>
+        <h4>مصطفى & إسراء</h4>
+      </footer>
 
     </main>
 
-    <!-- MUSIC TOGGLE BUTTON -->
+    <!-- Music Control Button -->
     <button id="musicToggle" class="music-btn">♫</button>
 
   </div>
 
-  <!-- GSAP & Lenis Libraries -->
+  <!-- Scripts: GSAP & Lenis -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
