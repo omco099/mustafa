@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bgMusic");
   const musicBtn = document.getElementById("musicToggle");
 
-  // Register GSAP safely
+  // GSAP Setup
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  // Lenis Smooth Scroll Setup
+  // Smooth Scroll (Lenis)
   if (typeof Lenis !== "undefined") {
     const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
     function raf(time) {
@@ -22,15 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(raf);
   }
 
-  // Music Player Toggle
+  // Music Play/Pause Toggle
   let musicPlaying = false;
-  if (musicBtn && music) {
+
+  function playAudio() {
+    if (music) {
+      music.play().then(() => {
+        musicPlaying = true;
+        if (musicBtn) musicBtn.innerHTML = "❚❚";
+      }).catch(err => console.log("Audio play deferred:", err));
+    }
+  }
+
+  if (musicBtn) {
     musicBtn.addEventListener("click", () => {
       if (!musicPlaying) {
-        music.play().then(() => {
-          musicPlaying = true;
-          musicBtn.innerHTML = "❚❚";
-        }).catch(err => console.log("Audio play error:", err));
+        playAudio();
       } else {
         music.pause();
         musicPlaying = false;
@@ -39,18 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Medallion Click Event
+  // Medallion Click Event Trigger
   if (medallionSeal) {
     medallionSeal.addEventListener("click", () => {
-      // Try Auto-playing music
-      if (music) {
-        music.play().then(() => {
-          musicPlaying = true;
-          if (musicBtn) musicBtn.innerHTML = "❚❚";
-        }).catch(() => {});
-      }
+      // Start Playing Audio
+      playAudio();
 
-      // Direct fallback if GSAP is missing
+      // Fallback if GSAP is missing
       if (typeof gsap === "undefined") {
         if (envelopeScene) envelopeScene.style.display = "none";
         if (mainInvitation) {
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // GSAP Reveal Animation
+      // GSAP Reveal Sequence
       const tl = gsap.timeline();
 
       tl.to(medallionSeal, {
@@ -92,11 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Countdown Logic
+  // Countdown Logic (15 August 2026)
   const targetDate = new Date("2026-08-15T20:00:00");
   function updateTimer() {
     const now = new Date();
     const diff = targetDate - now;
+
     if (diff <= 0) return;
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));

@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: #111;
+  background-color: #0b0e14;
   font-family: 'Amiri', serif;
   display: flex;
   justify-content: center;
@@ -45,9 +45,7 @@ body {
   transform: scale(0.1);
 }
 
-/* ========================================= */
-/* ENVELOPE SCENE                            */
-/* ========================================= */
+/* ENVELOPE SCENE */
 .envelope-scene {
   height: 100vh;
   display: flex;
@@ -84,6 +82,7 @@ body {
   border-bottom: 2px solid var(--gold-accent);
 }
 
+/* MEDALLION SEAL (FIXED CLICK CLICKABLE AREA) */
 .medallion-seal {
   width: 150px;
   height: 150px;
@@ -95,9 +94,19 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 50;
+  position: relative;
+  pointer-events: auto;
   margin-top: auto;
   margin-bottom: auto;
+  user-select: none;
+}
+
+.medallion-inner,
+.medallion-svg,
+.medallion-text,
+.medallion-center-icon {
+  pointer-events: none;
 }
 
 .medallion-inner {
@@ -134,9 +143,7 @@ body {
   font-weight: 600;
 }
 
-/* ========================================= */
-/* MAIN INVITATION                           */
-/* ========================================= */
+/* MAIN INVITATION */
 .main-invitation {
   display: none;
   opacity: 0;
@@ -330,8 +337,7 @@ body {
 .music-btn {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -342,28 +348,4 @@ body {
   cursor: pointer;
   z-index: 100;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.medallion-seal {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #7a6042, #3b2c1d);
-  border: 3px solid var(--gold-accent);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3), inset 0 0 10px rgba(252, 222, 122, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 50; /* رفع الطبقة لضمان قابليته للضغط */
-  pointer-events: auto;
-  position: relative;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-/* منع العناصر الداخلية من حجب الضغطة */
-.medallion-inner, 
-.medallion-svg, 
-.medallion-center-icon {
-  pointer-events: none;
 }
