@@ -2,204 +2,158 @@
 <html lang="ar" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة زفاف إسراء ♥ مصطفى</title>
-<meta name="theme-color" content="#40E0D0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دعوة زفاف مصطفى ♥ إسراء</title>
+  <meta name="theme-color" content="#0b1326">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <!-- الخطوط -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Desktop Background -->
-<div class="desktop-bg"></div>
+  <!-- App Main Container -->
+  <div class="app-container">
 
-<!-- Mobile App -->
-<div class="app-container">
+    <!-- Audio Player -->
+    <audio id="bgMusic" loop preload="auto">
+      <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- Music -->
-<audio id="bgMusic" loop preload="auto">
-<source src="assets/music.mp3" type="audio/mpeg">
-</audio>
+    <!-- Overlay Light Bloom Effect (GSAP Light Reveal) -->
+    <div id="lightReveal" class="light-reveal"></div>
 
-<!-- Trees Layer -->
-<div class="trees-layer"></div>
+    <!-- ================================= -->
+    <!-- OPENING SCENE (ENVELOPE) -->
+    <!-- ================================= -->
+    <section id="openingScene" class="opening-scene">
+      <div class="envelope-container" id="envelopeContainer">
+        <!-- Envelope Frame -->
+        <div class="envelope-card">
+          <div class="pattern-bg"></div>
+          
+          <!-- Wax Seal / Medallion -->
+          <div id="waxSeal" class="wax-seal">
+            <div class="seal-inner">
+              <svg viewBox="0 0 100 100" class="seal-svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" class="seal-arabic">مصطفى & إسراء</text>
+              </svg>
+            </div>
+          </div>
 
-<!-- ================================= -->
-<!-- OPENING -->
-<!-- ================================= -->
-<section id="openingScene" class="opening-scene">
-<div class="envelope-wrapper">
-<div id="envelope" class="envelope">
-<div class="envelope-back"></div>
-<div class="envelope-flap"></div>
-<div id="waxSeal" class="wax-seal">
-<span>اضغط هنا</span>
-</div>
-</div>
-<div id="letter" class="letter">
-<div class="letter-paper">
-<div class="basmala">
-بسم الله الرحمن الرحيم
-</div>
-<p class="letter-line">
-بكل الحب والسعادة
-</p>
-<p class="letter-line">
-نتشرف بدعوتكم لحضور حفل زفاف
-</p>
-<h2 class="letter-names">
-إسراء ♥ مصطفى
-</h2>
-<p class="letter-date">
-15 أغسطس
-</p>
-<p class="letter-location">
-حفل الزفاف يوم الاتنين الموافق 17/8 في دمياط الجديدة قاعة بيلافيتا أمام هيئة ميناء دمياط
-</p>
-</div>
-</div>
-</div>
-<div class="scroll-indicator">
-<span>اسحب للأعلى</span>
-<div class="arrow"></div>
-</div>
-</section>
+          <p class="envelope-subtitle">YOU ARE INVITED FOR OUR SPECIAL DAY</p>
+        </div>
+      </div>
+    </section>
 
-<!-- ================================= -->
-<!-- HERO -->
-<!-- ================================= -->
-<section id="heroSection" class="hero-section">
-<div class="hero-glow"></div>
-<div class="floating-particles">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-</div>
-<div class="hero-content">
-<h1 class="bride-name">
-إسراء
-</h1>
-<div class="heart-wrapper">
-<div class="heart">♥</div>
-</div>
-<h1 class="groom-name">
-مصطفى
-</h1>
-</div>
-<div class="hero-date">
-<span>موعد زفافنا</span>
-<strong>15 أغسطس</strong>
-</div>
-</section>
+    <!-- ================================= -->
+    <!-- MAIN CONTENT (AFTER LIGHT REVEAL) -->
+    <!-- ================================= -->
+    <main id="mainContent" class="main-content">
 
-<!-- ================================= -->
-<!-- ENGAGEMENT -->
-<!-- ================================= -->
-<section class="engagement-section">
-<div class="section-title">
-<h2>تمت خطبتنا 💍</h2>
-<p>03 مارس 2025</p>
-</div>
-<div class="engagement-image image-right">
-<img src="assets/engagement1.jpeg" alt="Engagement">
-</div>
-<div class="engagement-image image-left">
-<img src="assets/engagement2.jpeg" alt="Engagement">
-</div>
-</section>
+      <!-- HERO SECTION WITH FLORAL ARCH & LANTERNS -->
+      <section id="heroSection" class="hero-section">
+        <div class="lanterns-container">
+          <div class="lantern lantern-left">🏮</div>
+          <div class="lantern lantern-center">🏮</div>
+          <div class="lantern lantern-right">🏮</div>
+        </div>
 
-<!-- ================================= -->
-<!-- LUNCH BANQUET (Formerly Henna) -->
-<!-- ================================= -->
-<section class="henna-section">
-<div class="henna-card">
-<div class="henna-icon">🍽️</div>
-<h2>مأدبة الغداء</h2>
-<h3>أمام منزل العريس</h3>
-<p>14 أغسطس</p>
-</div>
-</section>
+        <div class="floral-arch-bg"></div>
 
-<!-- ================================= -->
-<!-- COUNTDOWN -->
-<!-- ================================= -->
-<section class="countdown-section">
-<h2>موعد زفافنا</h2>
-<p class="wedding-date">15 أغسطس</p>
-<div id="countdown">
-<div class="count-box">
-<span id="days">00</span>
-<small>يوم</small>
-</div>
-<div class="count-box">
-<span id="hours">00</span>
-<small>ساعة</small>
-</div>
-<div class="count-box">
-<span id="minutes">00</span>
-<small>دقيقة</small>
-</div>
-<div class="count-box">
-<span id="seconds">00</span>
-<small>ثانية</small>
-</div>
-</div>
-</section>
+        <div class="hero-names-box">
+          <h1 class="groom-name reveal-item">MUSTAFA</h1>
+          <span class="and-symbol reveal-item">&</span>
+          <h1 class="bride-name reveal-item">ESRAA</h1>
+          <p class="arabic-sub reveal-item">حفل زفافنا</p>
+          <p class="hero-date reveal-item">15 أغسطس 2026</p>
+        </div>
+      </section>
 
-<!-- ================================= -->
-<!-- WEDDING VENUE -->
-<!-- ================================= -->
-<section class="venue-section">
-<div class="venue-card">
-<div class="venue-icon">📍</div>
-<h2>حفل الزفاف</h2>
-<h3>قاعة بيلافيتا </h3>
-<p>أمام هيئة ميناء دمياط</p>
-<a href="https://maps.app.goo.gl/dyVFKowV9sRC2NDg9?g_st=iw" target="_blank" class="location-btn">
-فتح الموقع
-</a>
-</div>
-</section>
+      <!-- COUNTDOWN SECTION -->
+      <section class="countdown-section">
+        <div class="section-header">
+          <span class="sub-title">15 AUGUST 2026</span>
+          <h2>العد التنازلي</h2>
+          <p class="tagline">WE CAN'T WAIT UNTIL THIS MOMENT!</p>
+        </div>
 
-<!-- ================================= -->
-<!-- CALENDAR -->
-<!-- ================================= -->
-<section class="calendar-section">
-<h2>أضف الموعد إلى التقويم</h2>
-<a id="calendarBtn" class="calendar-btn">
-إضافة إلى التقويم
-</a>
-</section>
+        <div id="countdown" class="countdown-grid">
+          <div class="count-box">
+            <span id="days">00</span>
+            <small>أيام</small>
+          </div>
+          <div class="count-box">
+            <span id="hours">00</span>
+            <small>ساعات</small>
+          </div>
+          <div class="count-box">
+            <span id="minutes">00</span>
+            <small>دقائق</small>
+          </div>
+          <div class="count-box">
+            <span id="seconds">00</span>
+            <small>ثواني</small>
+          </div>
+        </div>
+      </section>
 
-<!-- ================================= -->
-<!-- FINAL -->
-<!-- ================================= -->
-<section class="final-section">
-<div class="final-overlay">
-<h1>نتشرف بحضوركم</h1>
-<div class="final-heart">♥</div>
-<h2>إسراء</h2>
-<h2>مصطفى</h2>
-<p>17 أغسطس</p>
-</div>
-</section>
-</div>
+      <!-- HENNA / LUNCH BANQUET SECTION -->
+      <section class="event-section henna-bg">
+        <div class="event-card">
+          <div class="event-icon">🍲</div>
+          <h2>مأدبة الغداء والحنة</h2>
+          <div class="event-date">الأربعاء، 14 أغسطس 2026</div>
+          <p class="event-location">أمام المنزل في قرية الدمايرة - بلقاس</p>
+        </div>
+      </section>
 
-<!-- MUSIC BUTTON -->
-<button id="musicToggle">♫</button>
+      <!-- WEDDING VENUE SECTION -->
+      <section class="event-section venue-bg">
+        <div class="event-card">
+          <div class="event-icon">🏰</div>
+          <h2>حفل الزفاف</h2>
+          <div class="event-date">الخميس، 15 أغسطس 2026</div>
+          <p class="event-location">قاعة Bella Vita - مدينة دمياط الجديدة</p>
+          
+          <a href="https://maps.app.goo.gl/Tgtuzm1XXxXVLfUJ7?g_st=iw" target="_blank" class="map-btn">
+            📍 فتح الموقع على الخريطة
+          </a>
+        </div>
+      </section>
 
-<!-- Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
-<script src="https://unpkg.com/split-type"></script>
-<script src="app.js"></script>
+      <!-- CALENDAR SECTION -->
+      <section class="calendar-section">
+        <button id="calendarBtn" class="calendar-btn">
+          📅 إضافة المناسبة إلى التقويم
+        </button>
+      </section>
+
+      <!-- FOOTER / FINAL -->
+      <section class="final-section">
+        <h2>نتشرف بحضوركم لمشاركتنا فرحتنا</h2>
+        <p class="final-names">مصطفى ♥ إسراء</p>
+      </section>
+
+    </main>
+
+    <!-- MUSIC TOGGLE BUTTON -->
+    <button id="musicToggle" class="music-btn">♫</button>
+
+  </div>
+
+  <!-- GSAP & Lenis Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+  <script src="app.js"></script>
+
 </body>
+
 </html>
