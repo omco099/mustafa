@@ -463,17 +463,17 @@ calendarBtn.addEventListener("click", () => {
 
   const title =
     encodeURIComponent(
-      "حفل زفاف مريم وحسن"
+      "حفل زفاف اسراء ومصطفى"
     );
 
   const details =
     encodeURIComponent(
-      "قاعة أوركيدا - رأس البر"
+      "قاعة بيلا فيتا - دمياط الجديدة"
     );
 
   const location =
     encodeURIComponent(
-      "قاعة أوركيدا - رأس البر"
+      "قاعة بيلا فيتا - دمياط الجديدة"
     );
 
   const url =
