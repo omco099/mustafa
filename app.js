@@ -15,12 +15,18 @@ if (typeof Lenis !== "undefined") {
     smoothWheel: true
   });
 
+  // إيقاف السكرول مبدئياً عند تحميل الصفحة
+  lenis.stop();
+
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
 }
+
+// قفل السكرول على الصفحة
+document.body.classList.add("no-scroll");
 
 /* ================================= */
 /* ELEMENTS */
@@ -89,6 +95,10 @@ if (heroSection) {
 /* ================================= */
 if (seal) {
   seal.addEventListener("click", () => {
+    // تفعيل التمرير مجدداً بعد الضغط على الختم
+    document.body.classList.remove("no-scroll");
+    if (lenis) lenis.start();
+
     if (music) {
       music.volume = 0;
       music.play().catch(() => {});
@@ -159,7 +169,6 @@ if (seal) {
 /* SCROLL REVEALS & ANIMATIONS */
 /* ================================= */
 
-// أنيميشن "بدأت الحكاية"
 gsap.from(".story-image.image-1", {
   y: 80,
   opacity: 0,
@@ -171,7 +180,6 @@ gsap.from(".story-image.image-1", {
   }
 });
 
-// أنيميشن "تمت خطبتنا"
 gsap.from(".engagement-section .image-right", {
   x: 100,
   y: 40,
@@ -196,7 +204,6 @@ gsap.from(".engagement-section .image-left", {
   }
 });
 
-// أنيميشن "كتب الكتاب"
 gsap.from(".katbelketab-section .image-right", {
   x: 100,
   y: 40,
@@ -221,7 +228,6 @@ gsap.from(".katbelketab-section .image-left", {
   }
 });
 
-// باقي الأقسام
 gsap.from(".henna-card", {
   y: 80,
   opacity: 0,
