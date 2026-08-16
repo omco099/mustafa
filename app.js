@@ -1,29 +1,30 @@
 /* ================================= */
 /* GSAP REGISTER */
 /* ================================= */
-
-gsap.registerPlugin(ScrollTrigger);
-
-/* ================================= */
-/* LENIS SMOOTH SCROLL */
-/* ================================= */
-
-const lenis = new Lenis({
-  duration: 1.2,
-  smoothWheel: true
-});
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
+if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-requestAnimationFrame(raf);
+/* ================================= */
+/* SAFE LENIS SMOOTH SCROLL */
+/* ================================= */
+let lenis;
+if (typeof Lenis !== "undefined") {
+  lenis = new Lenis({
+    duration: 1.2,
+    smoothWheel: true
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
 
 /* ================================= */
 /* ELEMENTS */
 /* ================================= */
-
 const seal = document.getElementById("waxSeal");
 const flap = document.querySelector(".envelope-flap");
 const letter = document.getElementById("letter");
@@ -38,10 +39,10 @@ const customBg = document.getElementById("customBg");
 /* ================================= */
 /* MUSIC LOGIC */
 /* ================================= */
-
 let musicPlaying = false;
 
 function fadeAudio(targetVolume, duration = 2000) {
+  if (!music) return;
   const startVolume = music.volume;
   const steps = 40;
   let current = 0;
@@ -55,116 +56,110 @@ function fadeAudio(targetVolume, duration = 2000) {
   }, duration / steps);
 }
 
-musicBtn.addEventListener("click", () => {
-  if (!musicPlaying) {
-    music.play();
-    fadeAudio(1);
-    musicPlaying = true;
-    musicBtn.innerHTML = "❚❚";
-  } else {
-    fadeAudio(0, 800);
-    setTimeout(() => {
-      music.pause();
-    }, 900);
-    musicPlaying = false;
-    musicBtn.innerHTML = "♫";
-  }
-});
+if (musicBtn) {
+  musicBtn.addEventListener("click", () => {
+    if (!musicPlaying) {
+      if (music) music.play().catch(() => {});
+      fadeAudio(1);
+      musicPlaying = true;
+      musicBtn.innerHTML = "❚❚";
+    } else {
+      fadeAudio(0, 800);
+      setTimeout(() => {
+        if (music) music.pause();
+      }, 900);
+      musicPlaying = false;
+      musicBtn.innerHTML = "♫";
+    }
+  });
+}
 
 /* ================================= */
 /* INITIAL STATES */
 /* ================================= */
-
-gsap.set(heroSection, {
-  opacity: 0,
-  y: 100
-});
+if (heroSection) {
+  gsap.set(heroSection, {
+    opacity: 0,
+    y: 100
+  });
+}
 
 /* ================================= */
 /* OPEN ENVELOPE ANIMATION */
 /* ================================= */
+if (seal) {
+  seal.addEventListener("click", () => {
+    // تشغيل الصوت بأمان
+    if (music) {
+      music.volume = 0;
+      music.play().catch(() => {});
+      fadeAudio(1);
+      musicPlaying = true;
+      if (musicBtn) musicBtn.innerHTML = "❚❚";
+    }
 
-seal.addEventListener("click", () => {
-  music.volume = 0;
-  music.play();
-  fadeAudio(1);
-  musicPlaying = true;
-  musicBtn.innerHTML = "❚❚";
+    // تفعيل الخلفية الثابتة
+    if (customBg) {
+      customBg.classList.add("active");
+    }
 
-  // تفعيل الخلفية الثابتة الداكنة عند فتح الختم
-  if (customBg) {
-    customBg.classList.add("active");
-  }
+    const tl = gsap.timeline();
 
-  const tl = gsap.timeline();
+    seal.classList.add("gold-mode");
 
-  // 1. تحول الختم إلى اللون الذهبي مع خروج الضوء من الحروف
-  seal.classList.add("gold-mode");
-
-  tl.to(".seal-text", {
-    scale: 1.25,
-    duration: 0.3,
-    ease: "back.out(2)"
-  })
-
-  // 2. انبعاث الضوء لملء الشاشة كاملاً في ثانية
-  .to(lightFlash, {
-    opacity: 1,
-    scale: 120,
-    duration: 1,
-    ease: "power2.inOut"
-  })
-
-  // 3. اختفاء الختم وفتح الغطاء خلف الإضاءة
-  .to(seal, {
-    scale: 0,
-    opacity: 0,
-    duration: 0.3
-  }, "-=0.5")
-
-  .to(flap, {
-    rotateX: -180,
-    duration: 0.8,
-    ease: "power3.inOut"
-  }, "-=0.5")
-
-  .to(letter, {
-    opacity: 1,
-    y: -220,
-    duration: 1,
-    ease: "power4.out"
-  }, "-=0.2")
-
-  // 4. تلاشي الإضاءة تدريجياً لكشف الرسالة
-  .to(lightFlash, {
-    opacity: 0,
-    duration: 0.8,
-    ease: "power1.out"
-  })
-
-  .to(scrollIndicator, {
-    opacity: 1,
-    duration: 0.6
-  })
-
-  .to(envelope, {
-    opacity: 0,
-    scale: .9,
-    duration: 0.6
-  }, "-=0.4")
-
-  .to(heroSection, {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: "power3.out"
-  }, "-=0.2");
-});
+    tl.to(".seal-text", {
+      scale: 1.25,
+      duration: 0.3,
+      ease: "back.out(2)"
+    })
+    .to(lightFlash, {
+      opacity: 1,
+      scale: 120,
+      duration: 1,
+      ease: "power2.inOut"
+    })
+    .to(seal, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.3
+    }, "-=0.5")
+    .to(flap, {
+      rotateX: -180,
+      duration: 0.8,
+      ease: "power3.inOut"
+    }, "-=0.5")
+    .to(letter, {
+      opacity: 1,
+      y: -220,
+      duration: 1,
+      ease: "power4.out"
+    }, "-=0.2")
+    .to(lightFlash, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power1.out"
+    })
+    .to(scrollIndicator, {
+      opacity: 1,
+      duration: 0.6
+    })
+    .to(envelope, {
+      opacity: 0,
+      scale: .9,
+      duration: 0.6
+    }, "-=0.4")
+    .to(heroSection, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    }, "-=0.2");
+  });
+}
 
 /* ================================= */
-/* SCROLL REVEALS (STORY / ENGAGEMENT) */
+/* SCROLL REVEALS & ANIMATIONS */
 /* ================================= */
-
 gsap.from(".story-image", {
   y: 80,
   opacity: 0,
@@ -201,10 +196,6 @@ gsap.from(".image-left", {
   }
 });
 
-/* ================================= */
-/* HENNA */
-/* ================================= */
-
 gsap.from(".henna-card", {
   y: 80,
   opacity: 0,
@@ -214,10 +205,6 @@ gsap.from(".henna-card", {
     start: "top 80%"
   }
 });
-
-/* ================================= */
-/* COUNTDOWN DISPLAY & ANIMATION */
-/* ================================= */
 
 gsap.from(".count-box", {
   opacity: 0,
@@ -243,18 +230,19 @@ function updateCountdown() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
+  const d = document.getElementById("days");
+  const h = document.getElementById("hours");
+  const m = document.getElementById("minutes");
+  const s = document.getElementById("seconds");
+
+  if (d) d.innerHTML = days;
+  if (h) h.innerHTML = hours;
+  if (m) m.innerHTML = minutes;
+  if (s) s.innerHTML = seconds;
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
-
-/* ================================= */
-/* VENUE */
-/* ================================= */
 
 gsap.from(".venue-card", {
   y: 80,
@@ -265,10 +253,6 @@ gsap.from(".venue-card", {
     start: "top 80%"
   }
 });
-
-/* ================================= */
-/* FINAL */
-/* ================================= */
 
 gsap.from(".final-overlay", {
   opacity: 0,
@@ -290,17 +274,17 @@ gsap.to(".final-heart", {
 /* ================================= */
 /* CALENDAR */
 /* ================================= */
-
 const calendarBtn = document.getElementById("calendarBtn");
+if (calendarBtn) {
+  calendarBtn.addEventListener("click", () => {
+    const start = "20260817T200000";
+    const end = "20260818T010000";
+    const title = encodeURIComponent("حفل زفاف اسراء ومصطفى");
+    const details = encodeURIComponent("قاعة بيلا فيتا - دمياط الجديدة");
+    const location = encodeURIComponent("قاعة بيلا فيتا - دمياط الجديدة");
 
-calendarBtn.addEventListener("click", () => {
-  const start = "20260817T200000";
-  const end = "20260818T010000";
-  const title = encodeURIComponent("حفل زفاف اسراء ومصطفى");
-  const details = encodeURIComponent("قاعة بيلا فيتا - دمياط الجديدة");
-  const location = encodeURIComponent("قاعة بيلا فيتا - دمياط الجديدة");
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
 
-  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
-
-  window.open(url, "_blank");
-});
+    window.open(url, "_blank");
+  });
+}
