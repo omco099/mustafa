@@ -89,7 +89,6 @@ if (heroSection) {
 /* ================================= */
 if (seal) {
   seal.addEventListener("click", () => {
-    // تشغيل الصوت بأمان
     if (music) {
       music.volume = 0;
       music.play().catch(() => {});
@@ -98,7 +97,6 @@ if (seal) {
       if (musicBtn) musicBtn.innerHTML = "❚❚";
     }
 
-    // تفعيل الخلفية الثابتة
     if (customBg) {
       customBg.classList.add("active");
     }
@@ -160,42 +158,70 @@ if (seal) {
 /* ================================= */
 /* SCROLL REVEALS & ANIMATIONS */
 /* ================================= */
-gsap.from(".story-image", {
+
+// أنيميشن "بدأت الحكاية"
+gsap.from(".story-image.image-1", {
   y: 80,
   opacity: 0,
   duration: 1.2,
-  stagger: 0.3,
   ease: "power3.out",
   scrollTrigger: {
-    trigger: ".story-grid",
+    trigger: "#heroSection",
     start: "top 80%"
   }
 });
 
-gsap.from(".image-right", {
+// أنيميشن "تمت خطبتنا"
+gsap.from(".engagement-section .image-right", {
   x: 100,
   y: 40,
   opacity: 0,
   duration: 1.3,
   ease: "power3.out",
   scrollTrigger: {
-    trigger: ".image-right",
+    trigger: ".engagement-section",
     start: "top 80%"
   }
 });
 
-gsap.from(".image-left", {
+gsap.from(".engagement-section .image-left", {
   x: -100,
   y: 40,
   opacity: 0,
   duration: 1.3,
   ease: "power3.out",
   scrollTrigger: {
-    trigger: ".image-left",
+    trigger: ".engagement-section",
     start: "top 80%"
   }
 });
 
+// أنيميشن "كتب الكتاب"
+gsap.from(".katbelketab-section .image-right", {
+  x: 100,
+  y: 40,
+  opacity: 0,
+  duration: 1.3,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".katbelketab-section",
+    start: "top 80%"
+  }
+});
+
+gsap.from(".katbelketab-section .image-left", {
+  x: -100,
+  y: 40,
+  opacity: 0,
+  duration: 1.3,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".katbelketab-section",
+    start: "top 80%"
+  }
+});
+
+// باقي الأقسام
 gsap.from(".henna-card", {
   y: 80,
   opacity: 0,

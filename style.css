@@ -2,7 +2,7 @@
   --green: #A5CF83;
   --gold: #ECB65F;
   --orange: #E89951;
-  --text: #280401;
+  --text: #2d080a;
   --wax: #7C2323;
   --paper: #FFF9F1;
   --white: #ffffff;
@@ -26,9 +26,23 @@ body {
   min-height: 100vh;
 }
 
-/* ========================= */
-/* Desktop Background */
-/* ========================= */
+/* Custom Fixed Background */
+.custom-fixed-bg {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  pointer-events: none;
+}
+
+.custom-fixed-bg.active {
+  opacity: 1;
+}
 
 .desktop-bg {
   position: fixed;
@@ -36,10 +50,6 @@ body {
   backdrop-filter: blur(20px);
   z-index: -10;
 }
-
-/* ========================= */
-/* Mobile App */
-/* ========================= */
 
 .app-container {
   width: 100%;
@@ -49,10 +59,6 @@ body {
   background: transparent;
   overflow: hidden;
 }
-
-/* ========================= */
-/* Trees Layer */
-/* ========================= */
 
 .trees-layer {
   position: fixed;
@@ -64,10 +70,7 @@ body {
   z-index: -1;
 }
 
-/* ========================= */
 /* Opening */
-/* ========================= */
-
 .opening-scene {
   height: 120vh;
   display: flex;
@@ -75,10 +78,6 @@ body {
   align-items: center;
   position: relative;
 }
-
-/* ========================= */
-/* Envelope */
-/* ========================= */
 
 .envelope-wrapper {
   position: relative;
@@ -94,8 +93,6 @@ body {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  max-width: none;
-  max-height: none;
 }
 
 .envelope-back {
@@ -119,10 +116,6 @@ body {
   z-index: 7;
 }
 
-/* ========================= */
-/* Wax Seal & Gold Animation */
-/* ========================= */
-
 .wax-seal {
   position: absolute;
   left: 50%;
@@ -136,8 +129,8 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000; /* رفع الطبقة لأعلى مستوى لضمان الضغط */
-  pointer-events: auto; /* تفعيل استجابة النقر فوراً */
+  z-index: 1000;
+  pointer-events: auto;
   box-shadow: 0 15px 35px rgba(0, 0, 0, .35), inset 0 0 15px rgba(0, 0, 0, 0.4);
   transition: background 0.8s ease, box-shadow 0.8s ease;
 }
@@ -156,7 +149,6 @@ body {
   letter-spacing: 1px;
   background: linear-gradient(135deg, #fff3a8 0%, #ecb65f 50%, #b8860b 100%);
   background-clip: text;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
   transition: all 0.6s ease;
@@ -172,10 +164,6 @@ body {
   filter: none;
 }
 
-/* ========================= */
-/* Light Flash Screen */
-/* ========================= */
-
 .light-flash {
   position: fixed;
   inset: 0;
@@ -185,10 +173,6 @@ body {
   pointer-events: none;
   transform: scale(0.2);
 }
-
-/* ========================= */
-/* Letter */
-/* ========================= */
 
 .letter {
   position: absolute;
@@ -202,11 +186,12 @@ body {
 }
 
 .letter-paper {
-  background: transparent;
-  min-height: 100vh;
+  background: var(--paper);
+  min-height: 520px;
   padding: 20px;
   border-radius: 28px;
   text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,10 +203,6 @@ body {
   border-radius: 16px;
   object-fit: cover;
 }
-
-/* ========================= */
-/* Scroll Indicator */
-/* ========================= */
 
 .scroll-indicator {
   position: absolute;
@@ -243,21 +224,11 @@ body {
 }
 
 @keyframes arrowMove {
-
-  0%,
-  100% {
-    transform: translateY(0) rotate(45deg);
-  }
-
-  50% {
-    transform: translateY(10px) rotate(45deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(10px) rotate(45deg); }
 }
 
-/* ========================= */
-/* Hero & Story Grid */
-/* ========================= */
-
+/* Hero Section */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -278,19 +249,23 @@ body {
   margin-top: 30px;
 }
 
-.story-image img {
+.story-image img, .engagement-image img {
   width: 100%;
   display: block;
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, .15);
 }
 
-/* ========================= */
-/* Engagement */
-/* ========================= */
+/* Sections Styling */
+.engagement-section, .katbelketab-section {
+  padding: 80px 20px;
+}
 
-.engagement-section {
-  padding: 100px 20px;
+.katbelketab-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
 }
 
 .section-title {
@@ -305,20 +280,9 @@ body {
 
 .engagement-image {
   margin-bottom: 25px;
-  opacity: 1;
 }
 
-.engagement-image img {
-  width: 100%;
-  display: block;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, .15);
-}
-
-/* ========================= */
 /* Henna */
-/* ========================= */
-
 .henna-section {
   padding: 80px 20px;
 }
@@ -336,10 +300,7 @@ body {
   margin-bottom: 15px;
 }
 
-/* ========================= */
 /* Countdown */
-/* ========================= */
-
 .countdown-section {
   padding: 100px 20px;
   text-align: center;
@@ -370,10 +331,7 @@ body {
   font-weight: 700;
 }
 
-/* ========================= */
 /* Venue */
-/* ========================= */
-
 .venue-section {
   padding: 100px 20px;
 }
@@ -401,10 +359,7 @@ body {
   text-decoration: none;
 }
 
-/* ========================= */
 /* Calendar */
-/* ========================= */
-
 .calendar-section {
   padding: 80px 20px;
   text-align: center;
@@ -420,10 +375,7 @@ body {
   text-decoration: none;
 }
 
-/* ========================= */
 /* Final */
-/* ========================= */
-
 .final-section {
   height: 100vh;
   display: flex;
@@ -442,10 +394,6 @@ body {
 .final-section p {
   font-size: 28px;
 }
-
-/* ========================= */
-/* Music Button */
-/* ========================= */
 
 #musicToggle {
   position: fixed;
@@ -468,25 +416,4 @@ body {
   .app-container {
     max-width: 100%;
   }
-}
-/* ================================= */
-/* Custom Fixed Background */
-/* ================================= */
-
-.custom-fixed-bg {
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba( 255, 255, 255, 0.65), rgba(255 , 255, 255, 0.65)), url('assets/background.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -2;
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-  pointer-events: none;
-}
-
-/* تفعيل ظهور الخلفية */
-.custom-fixed-bg.active {
-  opacity: 1;
 }
