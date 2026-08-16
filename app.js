@@ -33,6 +33,7 @@ const scrollIndicator = document.querySelector(".scroll-indicator");
 const envelope = document.getElementById("envelope");
 const heroSection = document.getElementById("heroSection");
 const lightFlash = document.getElementById("lightFlash");
+const customBg = document.getElementById("customBg");
 
 /* ================================= */
 /* MUSIC LOGIC */
@@ -89,6 +90,11 @@ seal.addEventListener("click", () => {
   fadeAudio(1);
   musicPlaying = true;
   musicBtn.innerHTML = "❚❚";
+
+  // تفعيل الخلفية الثابتة الداكنة عند فتح الختم
+  if (customBg) {
+    customBg.classList.add("active");
+  }
 
   const tl = gsap.timeline();
 
