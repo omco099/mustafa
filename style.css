@@ -2,7 +2,7 @@
   --green: #A5CF83;
   --gold: #ECB65F;
   --orange: #E89951;
-  --text: #454040;
+  --text: #fff;
   --wax: #7C2323;
   --paper: #FFF9F1;
   --white: #ffffff;
@@ -476,8 +476,7 @@ body {
 .custom-fixed-bg {
   position: fixed;
   inset: 0;
-  /* طبقة سوداء شفافة بنسبة 65% مع صورة الخلفية */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('assets/background.jpeg');
+  background-image: linear-gradient(rgba( 255, 255, 255, 0.65), rgba(255 , 255, 255, 0.65)), url('assets/background.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
